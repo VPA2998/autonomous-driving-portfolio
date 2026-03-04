@@ -1,4 +1,4 @@
-# 🚗 ADAS & AD Portfolio
+# 🚗 ADAS & AD Portfolio - Vijay Priyan Ayyaru
 
 **Complete Full-Stack ADAS & AV Portfolio: 6 End-to-End Projects covering Perception, Planning, Control, and Deep Learning.**
 
