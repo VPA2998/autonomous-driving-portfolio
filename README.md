@@ -49,6 +49,93 @@ This portfolio demonstrates competence across the **full autonomous driving stac
 
 ---
 
+### AD focused Stack:
+
+```mermaid
+graph TD
+    subgraph "👁️ Perception Layer"
+        P1["🛑 NeuroBrake<br/>(ML Collision Detection)"]
+        P2["🚦 Traffic Sign CNN<br/>(Object Recognition)"]
+    end
+
+    subgraph "🧠 Planning & Decision Layer"
+        PL1["🔄 Lane Change FSM<br/>(Behavior Planning)"]
+        PL2["🛣️ Motion Planning Stack<br/>(FSM + IDM + Frenet)"]
+        PL3["🤖 MetaDrive PPO<br/>(End-to-End RL Planning)"]
+    end
+
+    subgraph "⚙️ Control Layer"
+        C1["🎯 ACC PID Controller<br/>(Longitudinal Control)"]
+    end
+
+    subgraph "🚗 Vehicle Actuators"
+        ACT["Steering • Throttle • Brake"]
+    end
+
+    %% Flow Connections
+    P1 --> PL1
+    P2 --> PL1
+    P1 --> PL2
+    P2 --> PL2
+    
+    PL1 --> PL2
+    PL3 -.->|"Alternative Path"| PL2
+    
+    PL2 --> C1
+    PL1 --> C1
+    
+    C1 --> ACT
+
+    %% Styling
+    style P1 fill:#ffebee,stroke:#c62828
+    style P2 fill:#ffebee,stroke:#c62828
+    style PL1 fill:#e3f2fd,stroke:#1565c0
+    style PL2 fill:#e3f2fd,stroke:#1565c0
+    style PL3 fill:#e3f2fd,stroke:#1565c0
+    style C1 fill:#e8f5e9,stroke:#2e7d32
+    style ACT fill:#f5f5f5,stroke:#333
+```
+
+## ADAS Focus Stack:
+
+```mermaid
+graph LR
+    subgraph "🚦 Input: Sensor Data"
+        S1["LiDAR / Radar"]
+        S2["Camera Feed"]
+    end
+
+    subgraph "🧠 ADAS Functions (Your Projects)"
+        F1["🛑 AEB System<br/>(NeuroBrake ML)"]
+        F2["🚀 ACC System<br/>(PID Controller)"]
+        F3["⚠️ LKA / Lane Assist<br/>(FSM + Motion Planner)"]
+    end
+
+    subgraph "🎯 Output: Vehicle Action"
+        A1["Emergency Brake"]
+        A2["Adjust Speed"]
+        A3["Steer / Lane Change"]
+    end
+
+    %% Connections
+    S1 --> F1
+    S2 --> F1
+    S1 --> F2
+    S2 --> F3
+    
+    F1 --> A1
+    F2 --> A2
+    F3 --> A3
+
+    %% Styling for ADAS focus
+    style F1 fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    style F2 fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    style F3 fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    style A1 fill:#ffebee,stroke:#c62828
+    style A2 fill:#e8f5e9,stroke:#2e7d32
+    style A3 fill:#e3f2fd,stroke:#1565c0
+```
+
 ## 📁 Project Details
 
 ### 1. **NeuroBrake: ML-Based Automatic Emergency Braking**
